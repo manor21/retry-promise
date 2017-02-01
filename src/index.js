@@ -14,7 +14,7 @@ const retry = (opts = {}, getPromise) => {
           if (i >= opts.max) {
             return reject(err);
           }
-          setTimeout(() => attempt(i + 1), i * opts.backoff);
+          setTimeout(() => attempt(i + 1), opts.increaseInterval ? i * opts.backoff : opts.backoff);
         });
     };
     attempt(1);
